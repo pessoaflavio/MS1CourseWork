@@ -6,4 +6,4 @@ These examples are code snippets and ideas using Javascript, HTML and assorted l
 
 Code examples by Flávio Pessoa.
 
-01. Rita.js
+**01.** RiTa.js example | Documentation
