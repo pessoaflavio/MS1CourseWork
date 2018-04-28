@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>d3 test </title>
+          <script src="https://d3js.org/d3.v4.js"></script>
+          <style> body {margin: 0; padding: 0; background-color: lightpink} 
+          #viz1 {display: block;}
+          #option {z-index: 2; position: absolute; top: 100px; left: 100px;} 
+          #option2 {z-index: 2; position: absolute; top: 100px; right: 100px} 
+          .button {background-color: white; border: none; color: pink; padding: 15px 32px; text-align: center; text-transform: uppercase; display: inline; font-size: 11px}
+          .imgcont {display: inline-flex; border: pink 10px solid; opacity: 0.5; z-index: 0; transition-timing-function: ease; transition: transform 1s;}
+          .imgcont:hover {transform: scale(2); border: white 1px solid; opacity: 1; z-index: -1}
+          </style>
+
+    </head>
+    <body>
+        <script src="sketch.js"></script>
+        <div id="option">
+        <input name="updateButton" 
+           type="button" 
+           value="Update" 
+           class="button"
+           onclick="updateData()" />
+        </div>
+        
+        <div id="option2">
+        <input name="resetButton" 
+           type="button" 
+           class="button"
+           value="Reset" 
+           onclick="location.reload()" />
+        </div>
+        
+        <div id='viz1'></div>
+    </body>
+</html>
