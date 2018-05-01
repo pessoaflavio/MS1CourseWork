@@ -34,16 +34,24 @@ function rita () {
       //Our response from the HTTP request becomes a RiTa object
       //The response is a JSON object, with properties that we can pass 
       var keywords = RiString(parsedData.metadata.metaKeywords);
+      var title = parsedData.titles.primaryTitle;
       //... and this will give us an array of all the words in the text
       var syllabus = keywords.words();
       // Iterate through our words and filter Commas to appear as gray
       for (var i = 0; i < syllabus.length; i++) {
         if (syllabus[i] === ',') 
         { fill('lightgrey')
-        } else { fill(0, i*5, 153)
+        } else {fill(20, i*10, 153)
         }
-        textSize(14);
-        text(syllabus[i].toUpperCase(), i*windowWidth/50, (i+5)*windowHeight/50);
+        textSize(48);
+        textAlign(CENTER);
+        textFont('Courier');
+        text(title.toUpperCase(), windowWidth/2, windowHeight/2)
+        
+        textSize(12);
+        textAlign(CENTER);
+        textFont('Courier');
+        text(syllabus[i].toUpperCase(), windowWidth/2, (i+10)*windowHeight/40);
         }
       }
     );
@@ -52,7 +60,8 @@ function rita () {
 function draw () {
   //Calls our RiTa function
   rita();
-  background(66, 244, 155, 200);
+  var r = random(255)
+  background(r, 240, r + 10, 200);
 }
 
 function windowResized() {

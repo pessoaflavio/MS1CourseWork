@@ -23,7 +23,6 @@ function preload() {
   table04_Month = loadTable("assets/all_month.csv", "csv", "header");
 }
 
-
 //setting our sketch!
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -39,7 +38,7 @@ function setup() {
   //the action() function, that will
   //change our global state
   button.mousePressed(action);
-  ScatterPlot(table04_Month, 255, 255, 0);
+  ScatterPlot(table04_Month, 255, 255, 0, 'Last Month | Sep 2017');
 }
 
 //this is our function called by the button.
@@ -61,7 +60,7 @@ function action() {
 
 function reset() {
   state = 0;
-  ScatterPlot(table04_Month, 255, 255, 0);
+  ScatterPlot(table04_Month, 255, 255, 0, 'Last Month | Sep 2017');
 }
 
 // newgraph() just defines conditions 
@@ -69,15 +68,18 @@ function reset() {
 // by checking the 'state' variable current value.
 
 function newgraph() {
-  if (state == 1) {ScatterPlot(table03_Week, 255, 215, 32)}
-  else if (state == 2) {ScatterPlot(table02_Day, 250, 128, 14)}
-  else if (state == 3) {ScatterPlot(table01_Hour, 255, 69, 0)}
-  else if (state == 0){ScatterPlot(table04_Month, 255, 255, 0)}
+  if (state == 1) {ScatterPlot(table03_Week, 255, 215, 32, 'Last Week | Sep 23th-30th 2017')}
+  else if (state == 2) {ScatterPlot(table02_Day, 250, 128, 14, 'Last Day | Sep 30th 2017')}
+  else if (state == 3) {ScatterPlot(table01_Hour, 255, 69, 0, 'Last Hour | 23:00 Sep 30th 2017')}
+  else if (state == 0){ScatterPlot(table04_Month, 255, 255, 0, 'Last Month | Sep 2017')}
 }
 
 //scatterPlot takes our data as parameters
 // and will do regular p5 drawing on canvas
-function ScatterPlot(value, c1, c2, c3) {
+function ScatterPlot(value, c1, c2, c3, title) {
+
+  var l = title.length;
+  console.log(l)
 
   background('black');
   for (var i=0; i<value.getRowCount(); i++) {
@@ -89,7 +91,13 @@ function ScatterPlot(value, c1, c2, c3) {
     var yII = map(yI, -180, 180, 0, width);
     var rI = (sqrt((value.get(i, 'mag'))*PI))*25; 
     ellipse(yII,xII,rI);
-
   }
+  fill(c1, c2, c3);
+  rect(100, 135, 7*(title.length), 25)
+  
+  fill('black');
+  textFont('Seravek');
+  textSize(14);
+  text(title, 105, 152);
   
 }
